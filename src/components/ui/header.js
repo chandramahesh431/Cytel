@@ -12,7 +12,11 @@ const useStyles = makeStyles({
   icon: {
     marginLeft: "auto"
   },
-  menu: { marginLeft: "10em" }
+  menu: { marginLeft: "10em" },
+  cytelText: {
+    marginLeft: "4.1em",
+    marginRight: 300
+  }
 });
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -44,7 +48,7 @@ const Header = props => {
     <ElevationScroll {...props}>
       <AppBar position="static" elevation={0}>
         <Toolbar>
-          <Typography>
+          <Typography className={classes.cytelText}>
             Cytel <span style={{ marginLeft: "0.3em" }}>|</span>
             <span style={{ marginLeft: "0.4em" }}>East Solaris</span>
           </Typography>

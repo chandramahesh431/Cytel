@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     root: {
       backgroundColor: "red"
     }
+  },
+  prjtable: {
+    minWidth: 1200
   }
 });
 
@@ -38,7 +41,7 @@ export default function ProjectsTable() {
   return (
     <Grid container justify="center" className={classes.projectstable}>
       <Grid item>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.prjtable}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
