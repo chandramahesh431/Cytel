@@ -4,8 +4,16 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
+import Profile from "./profile";
 
+const useStyles = makeStyles({
+  icon: {
+    marginLeft: "auto"
+  },
+  menu: { marginLeft: "10em" }
+});
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -31,10 +39,18 @@ ElevationScroll.propTypes = {
   window: PropTypes.func
 };
 const Header = props => {
+  const classes = useStyles();
   return (
     <ElevationScroll {...props}>
-      <AppBar position="static">
-        <Toolbar>Cytel</Toolbar>
+      <AppBar position="static" elevation={0}>
+        <Toolbar>
+          <Typography>
+            Cytel <span style={{ marginLeft: "0.3em" }}>|</span>
+            <span style={{ marginLeft: "0.4em" }}>East Solaris</span>
+          </Typography>
+          <Avatar className={classes.icon}></Avatar>
+          <Profile className={classes.menu}></Profile>
+        </Toolbar>
       </AppBar>
     </ElevationScroll>
   );

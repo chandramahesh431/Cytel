@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import Header from "./components/ui/header";
 import theme from "./components/ui/theme";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import ProjectsTable from "./components/ui/table";
 import Home from "./components/ui/home";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <BrowserRouter>
           {" "}
           <Header></Header>
+          <ProjectsTable></ProjectsTable>
           <Switch>
             <Route exact path="/Home" component={Home}></Route>
             <Route
