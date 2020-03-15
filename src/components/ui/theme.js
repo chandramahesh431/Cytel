@@ -41,12 +41,13 @@ export default createMuiTheme({
     MuiButtonBase: {
       root: {
         marginLeft: "0.5em",
-        marginRight: "3.3em"
+        marginRight: "4em"
       }
     },
     MuiGrid: {
       root: {
-        margin: "10px"
+        // margin: "10px"
+        //marginLeft: "0.8em"
       }
     }
     // },

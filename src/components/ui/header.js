@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
   menu: { marginLeft: "10em" },
   cytelText: {
-    marginLeft: "4.1em",
+    marginLeft: "3.5em",
     marginRight: 300
   }
 });
@@ -46,7 +46,7 @@ const Header = props => {
   const classes = useStyles();
   return (
     <ElevationScroll {...props}>
-      <AppBar position="static" elevation={0}>
+      <AppBar position="static" elevation={0} disableGutters>
         <Toolbar>
           <Typography className={classes.cytelText}>
             Cytel <span style={{ marginLeft: "0.3em" }}>|</span>
