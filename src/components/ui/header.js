@@ -7,17 +7,28 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import Profile from "./profile";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   icon: {
-    marginLeft: "auto"
+    marginLeft: "auto",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "auto"
+    }
   },
-  menu: { marginLeft: "10em" },
+  menu: { marginLeft: "10rem", color: "red", backgroundColor: "red" },
   cytelText: {
-    marginLeft: "3.5em",
-    marginRight: 300
+    marginLeft: "3rem",
+    marginRight: "3.5rem",
+    fontSize: "0.9rem",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "0em",
+      marginRight: "0em",
+      fontSize: "0.9rem"
+    }
   }
-});
+}));
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -44,16 +55,21 @@ ElevationScroll.propTypes = {
 };
 const Header = props => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matchesLgUp = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
     <ElevationScroll {...props}>
-      <AppBar position="static" elevation={0} disableGutters>
+      <AppBar position="static">
         <Toolbar>
           <Typography className={classes.cytelText}>
             Cytel <span style={{ marginLeft: "0.3em" }}>|</span>
             <span style={{ marginLeft: "0.4em" }}>East Solaris</span>
           </Typography>
+
           <Avatar className={classes.icon}></Avatar>
-          <Profile className={classes.menu}></Profile>
+          <Profile className={classes.cytelText}></Profile>
         </Toolbar>
       </AppBar>
     </ElevationScroll>

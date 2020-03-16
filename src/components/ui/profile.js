@@ -63,9 +63,7 @@ export default function Profile() {
         onMouseOver={handleClick}
         onClick={handleClick}
       >
-        <Typography variant="h6" className={classes.name}>
-          Eric
-        </Typography>
+        <Typography>Name</Typography>
         <ArrowDropDownIcon></ArrowDropDownIcon>
       </Button>
       <StyledMenu

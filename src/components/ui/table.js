@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,9 +8,17 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import EditIcon from "@material-ui/icons/Edit";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CustomizedDialogs from "../ui/dialog";
 
-const useStyles = makeStyles({
-  table: { minWidth: "auto" },
+const useStyles = makeStyles(theme => ({
+  table: {
+    minWidth: "auto"
+  },
   projectstable: { marginTop: "3em" },
   MuiGrid: {},
   MuiTableHead: {
@@ -19,55 +27,226 @@ const useStyles = makeStyles({
     }
   },
   prjtable: {
-    minWidth: 1200
+    // minWidth: 1200
+    [theme.breakpoints.down("md")]: {}
+  },
+  addIcon: {
+    marginRight: "4em",
+    marginTop: "1em",
+    [theme.breakpoints.down("md")]: {
+      marginRight: "1em"
+    }
   }
-});
+}));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(
+  studyname,
+  studyStartDate,
+  studyCompletionDate,
+  protocolID,
+  studyGroup,
+  phase,
+  primaryIndication,
+  secondaryIndication,
+  action
+) {
+  return {
+    studyname,
+    studyStartDate,
+    studyCompletionDate,
+    protocolID,
+    studyGroup,
+    phase,
+    primaryIndication,
+    secondaryIndication,
+    action
+  };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9)
+  createData(
+    "Study1",
+    "2020-02-24",
+    "2020-02-24",
+    "Protocol477588",
+    "Group12233",
+    "Phase1",
+    "Inidication1",
+    "Indication2"
+  ),
+  createData(
+    "Study2",
+    "2020-02-24",
+    "2020-03-24",
+    "Protocol12",
+    "Group122",
+    "Phase2",
+    "Inidication1",
+    "Indication2"
+  ),
+  createData(
+    "Study3",
+    "2020-04-10",
+    "2020-05-24",
+    "Protocol123",
+    "Group1222",
+    "Phase3",
+    "Inidication1",
+    "Indication2"
+  ),
+  createData(
+    "Study4",
+    "2019-12-24",
+    "2020-03-24",
+    "Protocol12",
+    "Group122",
+    "Phase2",
+    "Inidication1",
+    "Indication2"
+  ),
+  createData(
+    "Study5",
+    "2020-02-24",
+    "2020-03-24",
+    "Protocol12",
+    "Group122",
+    "Phase2",
+    "Inidication1",
+    "Indication2"
+  ),
+  createData(
+    "Study6",
+    "2020-02-24",
+    "2020-03-24",
+    "Protocol12",
+    "Group122",
+    "Phase2",
+    "Inidication1",
+    "Indication2"
+  )
 ];
 
 export default function ProjectsTable() {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSMDown = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const matchesSMUp = useMediaQuery(theme.breakpoints.up("md", "xl"));
+  // const matchesMDUp = useMediaQuery(theme.breakpoints.down("up"));
+  //alert(matches);
+  const modalOpen = () => {
+    setOpen(true);
+  };
+  const modalClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <Grid container justify="center" className={classes.projectstable}>
-      <Grid item>
-        <TableContainer component={Paper} className={classes.prjtable}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+    <div>
+      <Grid container justify="center" className={classes.projectstable}>
+        <Grid item>
+          <TableContainer
+            style={{ display: matchesSMDown ? "block" : "none" }}
+            component={Paper}
+            className={classes.prjtable}
+          >
+            <Table
+              size="small"
+              className={classes.table}
+              aria-label="simple table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Study Name</TableCell>
+
+                  <TableCell align="center">Primary Indication</TableCell>
+
+                  <TableCell align="center">Action</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell align="center" component="th" scope="row">
+                      {row.studyname}
+                    </TableCell>
+
+                    <TableCell align="center">
+                      {row.primaryIndication}
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <VisibilityIcon></VisibilityIcon>
+
+                      <EditIcon></EditIcon>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <TableContainer
+            style={{ display: matchesSMUp ? "block" : "none" }}
+            component={Paper}
+            className={classes.prjtable}
+          >
+            <Table
+              size="small"
+              className={classes.table}
+              aria-label="simple table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Study Name</TableCell>
+                  <TableCell align="center">Study Start Date</TableCell>
+                  <TableCell align="center">Study Completion Date</TableCell>
+                  <TableCell align="center">Protocol ID</TableCell>
+                  <TableCell align="center">Study Group</TableCell>
+                  <TableCell align="center">Phase</TableCell>
+                  <TableCell align="center">Primary Indication</TableCell>
+                  <TableCell align="center">Secondary Indication</TableCell>
+                  <TableCell align="center">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell align="center" component="th" scope="row">
+                      {row.studyname}
+                    </TableCell>
+                    <TableCell align="center">{row.studyStartDate}</TableCell>
+                    <TableCell align="center">
+                      {row.studyCompletionDate}
+                    </TableCell>
+                    <TableCell align="center">{row.protocolID}</TableCell>
+                    <TableCell align="center">{row.studyGroup}</TableCell>
+                    <TableCell align="center">{row.phase}</TableCell>
+                    <TableCell align="center">
+                      {row.primaryIndication}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.secondaryIndication}
+                    </TableCell>
+                    <TableCell align="center">
+                      <VisibilityIcon onClick={modalOpen}></VisibilityIcon>
+
+                      <EditIcon onClick={modalOpen}></EditIcon>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid item container justify="flex-end">
+          <AddCircleOutlineIcon
+            onClick={modalOpen}
+            className={classes.addIcon}
+          ></AddCircleOutlineIcon>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
