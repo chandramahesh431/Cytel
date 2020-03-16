@@ -13,7 +13,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import CustomizedDialogs from "../ui/dialog";
+import SimpleDialog from "../ui/dialog";
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -127,19 +127,23 @@ const rows = [
 ];
 
 export default function ProjectsTable() {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const theme = useTheme();
   const matchesSMDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   const matchesSMUp = useMediaQuery(theme.breakpoints.up("md", "xl"));
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState("");
   // const matchesMDUp = useMediaQuery(theme.breakpoints.down("up"));
   //alert(matches);
-  const modalOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
-  const modalClose = () => {
+
+  const handleClose = value => {
     setOpen(false);
+    setSelectedValue(value);
   };
 
   return (
@@ -230,9 +234,11 @@ export default function ProjectsTable() {
                       {row.secondaryIndication}
                     </TableCell>
                     <TableCell align="center">
-                      <VisibilityIcon onClick={modalOpen}></VisibilityIcon>
+                      <VisibilityIcon
+                        onClick={handleClickOpen}
+                      ></VisibilityIcon>
 
-                      <EditIcon onClick={modalOpen}></EditIcon>
+                      <EditIcon onClick={handleClickOpen}></EditIcon>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -242,11 +248,16 @@ export default function ProjectsTable() {
         </Grid>
         <Grid item container justify="flex-end">
           <AddCircleOutlineIcon
-            onClick={modalOpen}
+            onClick={handleClickOpen}
             className={classes.addIcon}
           ></AddCircleOutlineIcon>
         </Grid>
       </Grid>
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
     </div>
   );
 }
