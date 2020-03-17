@@ -6,8 +6,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 
 const StyledMenu = withStyles({
   paper: {
@@ -40,7 +38,11 @@ const StyledMenuItem = withStyles(theme => ({
   }
 }))(MenuItem);
 
-const useStyles = makeStyles({});
+const useStyles = makeStyles({
+  name: {
+    textTransform: "lowercase"
+  }
+});
 export default function Profile() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,7 +65,7 @@ export default function Profile() {
         onMouseOver={handleClick}
         onClick={handleClick}
       >
-        <Typography>Name</Typography>
+        <Typography className={classes.name}>emids</Typography>
         <ArrowDropDownIcon></ArrowDropDownIcon>
       </Button>
       <StyledMenu

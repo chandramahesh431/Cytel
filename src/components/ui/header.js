@@ -56,8 +56,6 @@ ElevationScroll.propTypes = {
 const Header = props => {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  const matchesLgUp = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <ElevationScroll {...props}>

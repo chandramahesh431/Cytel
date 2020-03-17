@@ -23,15 +23,11 @@ export default createMuiTheme({
     }
   },
   overrides: {
-    MuiTableHead: {
-      root: {
-        backgroundColor: `${cytelWhite}`
-      }
-    },
     MuiTypography: {
       root: {
         color: `${cytelBlue}`,
-        textTransform: "capitalize"
+        textTransform: "capitalize",
+        fontSize: "1em"
       }
     },
     MuiAppBar: {
@@ -51,12 +47,27 @@ export default createMuiTheme({
       root: {
         // margin: "10px"
         //marginLeft: "0.8em"
+        minWidth: "auto"
       }
     },
     MuiSvgIcon: {
       root: {
         color: `${cytelBlue}`,
         cursor: "pointer"
+      }
+    },
+    MuiInputBase: {
+      root: {
+        display: "block",
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
+        fontSize: "1em",
+        paddingLeft: "0.5rem"
+      }
+    },
+    MuiInput: {
+      root: {
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
+        fontSize: "1em"
       }
     },
     MuiTableCell: {
@@ -68,6 +79,13 @@ export default createMuiTheme({
     MuiTableHead: {
       root: {
         backgroundColor: `${cytelBlackWhite}`
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
+        fontSize: "0.8em",
+        marginLeft: "0.5rem"
       }
     }
   }

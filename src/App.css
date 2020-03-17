@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.txtfield {
+  border: #e4ddddad solid 2px !important;
+}
+.txtfieldRequired {
+  border: #e4ddddad solid 2px !important;
+  border-left: orange solid 2px !important;
+}
