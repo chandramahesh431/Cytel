@@ -87,6 +87,12 @@ export default createMuiTheme({
         fontSize: "0.8em",
         marginLeft: "0.5rem"
       }
+    },
+    MuiTextField: {
+      root: {
+        width: "247px !important",
+        borderRadius: "8px"
+      }
     }
   }
 });
