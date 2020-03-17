@@ -107,6 +107,12 @@ export default createMuiTheme({
         width: "247px !important",
         borderRadius: "8px"
       }
+    },
+    MuiMenuItem: {
+      root: {
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
+        fontSize: "0.8em"
+      }
     }
   }
 });
