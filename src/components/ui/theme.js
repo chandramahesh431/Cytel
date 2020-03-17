@@ -77,7 +77,15 @@ export default createMuiTheme({
       }
     },
     MuiTableCell: {
-      body: {}
+      body: {
+        fontSize: "0.8em",
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important"
+      },
+      head: {
+        fontSize: "0.9em",
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
+        textTransform: "capitalize"
+      }
     },
     MuiTableRow: {
       root: {}
