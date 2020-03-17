@@ -62,6 +62,12 @@ export default createMuiTheme({
         fontFamily: "Roboto, Helvetica, Arial, sans-serif !important",
         fontSize: "1em",
         paddingLeft: "0.5rem"
+      },
+      input: {
+        height: "18px",
+        marginBottom: "3px",
+        marginTop: "3px",
+        paddingBottom: "0px"
       }
     },
     MuiInput: {
